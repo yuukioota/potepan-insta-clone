@@ -3,6 +3,7 @@
 @import "common.scss";
 @import "users/devise";
 @import "users/show";
+@import "users/edit";
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;

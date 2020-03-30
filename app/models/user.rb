@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,  :omniauthable
   validates :name,         presence: true, length: { maximum: 50 }
   validates :user_name,    presence: true, length: { maximum: 50 }
-  validates :profile_text, presence: true, length: { maximum: 500 }
-  validates :website_url,  presence: true, length: { maximum: 500 }
+  # validates :profile_text, presence: true, length: { maximum: 500 }
+  # validates :website_url,  presence: true, length: { maximum: 500 }
          
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -19,8 +19,20 @@ class User < ApplicationRecord
         password: Devise.friendly_token[0, 20]
       )
     end
-
     user
+  end
+  
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 
   private
