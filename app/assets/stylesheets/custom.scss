@@ -1,7 +1,8 @@
 @import "bootstrap";
-@import "layouts/navbar.scss";
+@import "layouts/navbar";
 @import "common.scss";
-@import "users/devise.scss";
+@import "users/devise";
+@import "users/show";
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
