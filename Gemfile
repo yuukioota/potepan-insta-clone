@@ -68,3 +68,5 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
