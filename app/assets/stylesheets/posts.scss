@@ -6,7 +6,8 @@
 }
 
 .card-wrap {
-  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .no-text-decoration:hover {
@@ -104,4 +105,14 @@
   overflow: hidden;
   text-indent: 110%;
   white-space: nowrap;
+}
+
+.delete-comment {
+  background-image: image-url("parts8");
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 11px;
+  float: right;
+  margin: 5px 0 0 10px;
+  background-size: 11px !important;
 }

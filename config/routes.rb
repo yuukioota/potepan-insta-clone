@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'comments/create'
+  get 'comments/destroy'
   devise_for :users, controllers: {
                         omniauth_callbacks: 'users/omniauth_callbacks', 
                         registrations: 'registrations' }
@@ -8,5 +10,6 @@ Rails.application.routes.draw do
   resources :posts, only: %i(index new create show destroy) do
     resources :photos, only: %i(create)
     resources :likes, only: %i(create destroy)
+    resources :comments, only: %i(create destroy)
   end
 end
