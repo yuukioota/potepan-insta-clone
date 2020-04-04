@@ -9,4 +9,9 @@ class Post < ApplicationRecord
   def liked_by(user)
     Like.find_by(user_id: user.id, post_id: id)
   end
+  
+  def self.search(search)
+    return Post.all unless search
+    Post.where(['caption LIKE ?', "%#{search}%"])
+  end
 end

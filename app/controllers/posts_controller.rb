@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i(show destroy)
   
   def index
-    @posts = Post.includes(:photos, :user).order('created_at DESC')
+    @posts = Post.includes(:photos, :user).order('created_at DESC').search(params[:search])
   end
   
   def new
@@ -35,6 +35,7 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
   
+    
   private
     def post_params
       params.require(:post).permit(:caption,photos_attributes: [:image]).merge(user_id: current_user.id)
@@ -43,4 +44,5 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find_by(id: params[:id])
     end
+    
 end
