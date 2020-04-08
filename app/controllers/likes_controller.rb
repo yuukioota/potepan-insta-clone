@@ -6,6 +6,7 @@ class LikesController < ApplicationController
     @post = @like.post
     if @like.save
       respond_to :js
+      @post.create_notification_like!(current_user)
     end
   end
 

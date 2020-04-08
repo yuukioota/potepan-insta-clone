@@ -70,3 +70,5 @@ gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem "kaminari"
+gem 'font-awesome-sass', '~> 5.4.1'

@@ -1,10 +1,13 @@
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "layouts/navbar";
 @import "common";
 @import "users/devise";
 @import "users/show";
 @import "users/edit";
 @import "posts";
+@import "notifications";
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
