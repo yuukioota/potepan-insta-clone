@@ -1,0 +1,14 @@
+<% @user.followers.each do |follower| %>
+  <%= link_to user_path(follower.id), class: "black-color no-text-decoration",title: follower.name do %>
+    <div class="row mt-5">
+      <div class="col-md-2 p-2">
+        <%= image_tag avatar_url(follower), class: "round-img" %>
+      </div>
+      <div class="col-md-10 p-2">
+        <p><strong><%= follower.name %></strong></p>
+        <p><%= follower.profile_text%></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+  

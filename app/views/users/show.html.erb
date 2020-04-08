@@ -6,11 +6,24 @@
     <div class="col-md-8">
       <div class="row">
         <h1><%= @user.user_name %></h1>
-        
         <% if @user == current_user %>
           <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-outline-dark edit-profile-btn" %>
           <button type="button" class="setting" data-toggle="modal" data-target="#exampleModal"></button>
         <% end %>
+        
+        <div class="follower">
+          <%= link_to followers_user_path(@user.id) do %>
+            <h5 style="color: black;">フォロワー<span class="follow" id="follow-count"><%= render 'follow_count' %></span>人</h5>
+          <% end %>
+        </div>
+        <div class="follow">
+          <%= link_to following_user_path(@user.id) do %>
+            <h5 style="color: black;">フォロー<%= @user.following.count %>人</h5>
+          <% end %>
+        </div>
+        <div>
+          <%= render "follow_form" %>
+        </div>
         
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
