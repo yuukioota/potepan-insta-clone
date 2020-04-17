@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   
+
   def destroy
     @user = User.find_by(id: params[:id])
     if @user.destroy

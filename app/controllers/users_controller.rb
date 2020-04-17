@@ -3,6 +3,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @posts = Post.where(user_id: params[:id])
   end
+  
+  def edit
+  end
 
   def following
     #@userがフォローしているユーザー
