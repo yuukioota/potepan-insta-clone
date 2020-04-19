@@ -1,3 +1,5 @@
+
+<%= "フォローしているユーザーはいません。" if @user.following.count  %>
 <% @user.following.each do |following| %>
   <%= link_to user_path(following.id), class: "black-color no-text-decoration",title: following.name do %>
     <div class="row mt-5">

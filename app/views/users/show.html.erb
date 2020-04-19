@@ -1,26 +1,29 @@
-<div class="profile-wrap">
-  <div class="row">
-    <div class="col-md-4 text-center">
+<div class="container profile-wrap">
+  <div class="row mb-3 text-center">
+    <div class="col-md-4 ">
       <%= image_tag avatar_url(@user), class: "round-img" %>
     </div>
     <div class="col-md-8">
-      <div class="row">
+      <div class="row p-2 justify-content-center justify-content-md-start">
         <h1><%= @user.user_name %></h1>
         <% if @user == current_user %>
-          <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-outline-dark edit-profile-btn" %>
           <button type="button" class="setting" data-toggle="modal" data-target="#exampleModal"></button>
         <% end %>
-        
-        <div class="follower">
-          <%= link_to followers_user_path(@user.id) do %>
-            <h5 style="color: black;">フォロワー<span class="follow" id="follow-count"><%= render 'follow_count' %></span>人</h5>
-          <% end %>
-        </div>
-        <div class="follow">
+      </div>
+      
+      <div class="row p-2 justify-content-center justify-content-md-start">
+        <div class="follow mr-3">
           <%= link_to following_user_path(@user.id) do %>
-            <h5 style="color: black;">フォロー<%= @user.following.count %>人</h5>
+            <h5 style="color: black;"><%= @user.following.count %>フォロー</h5>
           <% end %>
         </div>
+        <div class="follower mr-3">
+          <%= link_to followers_user_path(@user.id) do %>
+            <h5 style="color: black;"><span class="follow" id="follow-count"><%= render 'follow_count' %></span>フォロワー</h5>
+          <% end %>
+        </div>
+      </div>
+        
         <div>
           <%= render "follow_form" %>
         </div>
@@ -35,24 +38,17 @@
                 </button>
               </div>
               <div class="list-group text-center">
+                <%= link_to "プロフィールを編集", edit_user_registration_path, class: "list-group-item list-group-item-action" %>
                 <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
                 <%= link_to "キャンセル", "#", class: "list-group-item list-group-item-action", "data-dismiss": "modal" %>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <% if @user == current_user %>
-        <div class="row">
-          <p>
-            <%= @user.email %>
-          </p>
-        </div>
-      <% end %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12 text-center">
+  <div class="row p-2">
+    <div class="col-md text-center">
       <p>
         <%= @user.profile_text %>
       </p>
@@ -60,4 +56,4 @@
   </div>
 </div>
 
-<%= render 'partial/post' %>
+<%= render 'posts/post' %>

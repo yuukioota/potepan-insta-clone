@@ -1,24 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
-    <%= link_to "", root_path, class: "navbar__brand navbar__mainLogo" %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-md-auto align-items-center">
-        <li>
-          <%= form_tag(posts_path,:method => 'get') do %>
-            <%= text_field_tag :search, "", placeholder: "キーワード" %>
-            <%= submit_tag '検索', :caption => nil %>
+
+<nav class="container navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" href=<%= root_path %>>Potepan-Insta-Clone</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav ml-auto align-items-md-center">
+      <li class="nav-item p-2">
+        <%= link_to "HOME", root_path, class: "nav-link commonNavIcon" %>
+      </li>
+      <li class="nav-item p-2">
+        <%= link_to "MyPage", user_path(current_user), class: "nav-link commonNavIcon" %>
+      </li>
+      <li class="nav-item p-2">
+        <%= render "partial/circle" %>
+      </li>
+      <li class="nav-item p-2">
+        <span class="navbar-text d-flex">
+        <%= form_tag(posts_path,:method => 'get') do %>
+          <%= text_field_tag :search, "", placeholder: "search...", class: "" %>
+          <%= button_tag :caption => nil, :type => "submit", :class =>"btn btn-default btn-s-md" do %>
+            <i class="fa fa-search"></i>
           <% end %>
-        </li>
-        <li>
-          <%= render "partial/circle" %>
-        </li>
-        <li>
-          <%= link_to "MyPage", user_path(current_user), class: "nav-link commonNavIcon profile-icon" %>
-        </li>
-      </ul>
-    </div>
+        <% end %>
+        </span>
+      </li>
+    </ul>
   </div>
 </nav>

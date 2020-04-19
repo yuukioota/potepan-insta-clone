@@ -10,18 +10,16 @@
             <div class="col-auto pr-0">
               <%= image_tag avatar_url(current_user), class: "post-profile-icon" %>
             </div>
-            <div class="col pl-0">
-              <%= f.text_field :caption, class: "form-control border-0", placeholder: "キャプションを書く" %>
+            <div class="col pl-0 col align-self-center">
+              <%= f.text_field :caption, class: "form-control border-1", placeholder: "投稿内容" %>
             </div>
           </div>
           <div class="mb-3">
-
             <%= f.fields_for :photos do |i| %>
               <%= i.file_field :image %>
             <% end %>
-
           </div>
-          <%= f.submit "投稿する", class: "btn btn-primary" %>
+          <%= f.submit "投稿する", class: "btn btn-danger p-1" %>
         <% end %>
       </div>
     </div>
