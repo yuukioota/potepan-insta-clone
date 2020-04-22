@@ -3,6 +3,7 @@
     <div class="col-md-8 mx-auto">
       <div class="profile-form-wrap">
         <%= form_with scope: resource, as: resource_name, url: registration_path(resource_name), local: true, method: :patch do |f| %>
+        
           <div class="form-group">
             <%= f.label :name, "名前" %>
             <%= f.text_field :name, autofocus: true, placeholder: "名前", class: "form-control" %>
@@ -44,8 +45,9 @@
         <%= link_to(user_registration_path(id: current_user.id), method: :delete, class: 'content col-md-4 col-md-offset-1', data: {confirm: "アカウントを本当に削除しますか？"}) do %>
           <strong>退会する</strong>
         <% end %>
-        <%= link_to "パスワード変更はこちら", edit_user_password_path, class: "btn btn-danger" %>
+        <%= link_to "パスワード変更はこちら", users_password_changes_path(id: @user.id), class: "btn btn-danger" %>
       </div>
     </div>
   </div>
 </div>
+

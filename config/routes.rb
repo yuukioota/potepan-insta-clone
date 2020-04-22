@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks', 
     registrations:      'registrations', 
   }
+  
+  devise_scope :user do
+    get 'users/password_changes' => 'registrations#password_changes'
+  end
+  
   root to: "posts#index"
   get      '/users/:id', to: 'users#show', as: 'user'
   resources :posts, only: %i(index new create show destroy) do

@@ -15,8 +15,8 @@ class User < ApplicationRecord
 
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,  :omniauthable,
-         :confirmable
+         :recoverable, :rememberable, :validatable, 
+         :omniauthable, :confirmable
          
   validates :name,         presence: true, length: { maximum: 50 }
   validates :user_name,    presence: true, length: { maximum: 50 }
@@ -38,16 +38,16 @@ class User < ApplicationRecord
   end
   
   def update_without_current_password(params, *options)
-    params.delete(:current_password)
+      params.delete(:current_password)
+  
+      if params[:password].blank? && params[:password_confirmation].blank?
+        params.delete(:password)
+        params.delete(:password_confirmation)
+      end
 
-    if params[:password].blank? && params[:password_confirmation].blank?
-      params.delete(:password)
-      params.delete(:password_confirmation)
-    end
-
-    result = update_attributes(params, *options)
-    clean_up_passwords
-    result
+      result = update_attributes(params, *options)
+      clean_up_passwords
+      result
   end
   
   #フォローしているかを確認するメソッド
