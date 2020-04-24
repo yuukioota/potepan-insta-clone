@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
+  before_action :set_user, only: %i(password_changes destroy)
   
   def password_changes
-    @user = User.find_by(id: params[:id])
     if @user == current_user 
     else
       flash[:alert] = "権限がありません"
@@ -12,7 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
   
 
   def destroy
-    @user = User.find_by(id: params[:id])
     if @user.destroy
       flash[:notice] = "アカウントを削除しました" 
       redirect_to new_user_registration_path
@@ -24,10 +23,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
 
-    # def update_password_resource(resource, params)
-    #   resource.update_with_password(params)
-    # end
-    
     def update_resource(resource, params)
       if not params[:password]
         resource.update_without_current_password(params)

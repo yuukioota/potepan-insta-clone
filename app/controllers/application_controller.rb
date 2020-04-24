@@ -15,5 +15,17 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up,        keys: [:website_url])
       devise_parameter_sanitizer.permit(:account_update, keys: [:website_url])
       devise_parameter_sanitizer.permit(:account_update, keys: [:password])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:tell])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:sex])
     end
+    
+    def set_current_user
+      @user = User.find(current_user.id)
+    end
+    
+    def set_user
+      @user  = User.find(params[:id])
+    end
+    
+    
 end
