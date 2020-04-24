@@ -10,42 +10,50 @@
           </div>
           
           <div class="form-group">
-            <%= f.label :name, "ユーザーネーム" %>
+            <%= f.label :user_name, "ユーザーネーム" %>
             <%= f.text_field :user_name, autofocus: true, placeholder: "ユーザーネーム", class: "form-control" %>
           </div>
           
           <div class="form-group">
-            <%= f.label :name, "ウェブサイト" %>
+            <%= f.label :website_url, "ウェブサイト" %>
             <%= f.text_field :website_url, autofocus: true, placeholder: "ウェブサイト", class: "form-control" %>
           </div>
           
           <div class="form-group">
-            <%= f.label :name, "自己紹介" %>
+            <%= f.label :profile_text, "自己紹介" %>
             <%= f.text_area :profile_text, autofocus: true, placeholder: "自己紹介", class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :name, "メールアドレス" %>
+            <%= f.label :email, "メールアドレス" %>
             <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control" %>
           </div>
           
           <div class="form-group">
-            <%= f.label :name, "電話番号" %>
+            <%= f.label :tell, "電話番号" %>
             <%= f.text_field :tell, autofocus: true, placeholder: "電話番号", class: "form-control" %>
           </div>
           
           <div class="form-group">
-            <%= f.label :name, "性別" %>
-            <%= f.text_field :sex, autofocus: true, placeholder: "性別", class: "form-control" %>
+            <div>
+              <%= f.label :sex, "性別" %>
+            </div>
+            <label class="mr-2"><%= f.radio_button :sex, "男" %> 男 </label>
+            <label><%= f.radio_button :sex, "女" %> 女 </label>
           </div>
   
           <%= f.submit "変更する", class: "btn btn-primary" %>
         <% end %>
         
-        <%= link_to(user_registration_path(id: current_user.id), method: :delete, class: 'content col-md-4 col-md-offset-1', data: {confirm: "アカウントを本当に削除しますか？"}) do %>
-          <strong>退会する</strong>
-        <% end %>
-        <%= link_to "パスワード変更はこちら", users_password_changes_path(id: @user.id), class: "btn btn-danger" %>
+        <div class="mt-5">
+          <%= link_to users_password_changes_path(id: @user.id), class: "col-md-4 col-md-offset-1 pl-0" do %>
+            <strong>パスワードの変更</strong>
+          <% end %>
+          
+          <%= link_to user_registration_path(id: current_user.id), method: :delete, class: 'col-md-4 col-md-offset-1 text-danger', data: {confirm: "全てのデータが消去されます。アカウントを本当に削除しますか？"} do %>
+            <strong>アカウントの削除</strong>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
