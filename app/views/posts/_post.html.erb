@@ -1,11 +1,5 @@
 <div class="container">
-  <% if @user == current_user %>
-    <div class="row px-2 ">
-      <div class="col-md-12">
-        投稿数:<%= @user.posts.count %>
-      </div>
-    </div>
-  <% end %>
+  <%= paginate @posts %>
   <div class="row">
     <% @posts.each do |post| %>
     
@@ -17,7 +11,6 @@
         </div>
       </div>
       
-      
       <!▼モーダル--------------------------->
       <div class="modal fade" id="exampleModal-<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -28,8 +21,8 @@
                   <%= link_to user_path(post.user), class: "no-text-decoration" do %>
                     <%= image_tag avatar_url(post.user), class: "post-profile-icon" %>
                   <% end %>
-                  <%= link_to user_path(post.user), class: "black-color no-text-decoration",title: post.user.name do %>
-                    <strong><%= post.user.name %></strong>
+                  <%= link_to user_path(post.user), class: "black-color no-text-decoration",title: post.user.user_name do %>
+                    <strong><%= post.user.user_name %></strong>
                   <% end %>
                   
                   <% if post.user_id == current_user.id %>
@@ -55,7 +48,7 @@
                     <%= render "posts/like_text", { likes: post.likes } %>
                   </div>
                   <div>
-                    <span><strong><%= post.user.name %></strong></span>
+                    <span><strong><%= post.user.user_name %></strong></span>
                     <span><%= post.caption %></span>
                     <%= link_to time_ago_in_words(post.created_at).upcase + "前", "#", class: "post-time no-text-decoration" %>
                     <div id="comment-post-<%= post.id.to_s %>">
@@ -81,5 +74,6 @@
       <!▲モーダル------------------->
     <% end %>
   </div>
+  <%= paginate @posts %>
 </div>
 

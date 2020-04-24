@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i(show destroy)
+  before_action :set_current_user, only: %i(index following_posts)
   
   def index
-    @posts = Post.includes(:photos, :user).order('created_at DESC').search(params[:search])
+    @posts = Post.includes(:photos, :user).order('created_at DESC').search(params[:search]).page(params[:page])
   end
   
   def new
@@ -35,7 +36,15 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
   
-    
+  def following_posts
+    @users_ids = [@user.id]
+    @users = @user.following
+    @users.each do |user|
+      @users_ids << user.id
+    end
+    @posts = Post.includes(:photos, :user).where(user_id: @users_ids).order('created_at DESC').search(params[:search]).page(params[:page])
+  end
+
   private
     def post_params
       params.require(:post).permit(:caption,photos_attributes: [:image]).merge(user_id: current_user.id)

@@ -74,3 +74,5 @@ gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem "kaminari"
 gem 'font-awesome-sass', '~> 5.4.1'
+gem 'rails-i18n'
+gem 'faker'
