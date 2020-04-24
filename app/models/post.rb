@@ -1,11 +1,13 @@
 class Post < ApplicationRecord
-  belongs_to :user
-  has_many :photos, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  belongs_to :user,        dependent: :destroy
+  has_many :photos,        dependent: :destroy
+  has_many :likes,         dependent: :destroy
+  has_many :comments,      dependent: :destroy
   has_many :notifications, dependent: :destroy
   
   accepts_nested_attributes_for :photos
+  
+  validates :caption, length: { maximum: 200 }
   
   def liked_by(user)
     Like.find_by(user_id: user.id, post_id: id)

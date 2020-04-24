@@ -18,11 +18,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, 
          :omniauthable, :confirmable
          
-  validates :name,         presence: true, length: { maximum: 50 }
-  validates :user_name,    presence: true, length: { maximum: 50 }
+  validates :name,         presence: true, length: { maximum:  50 }
+  validates :email,        presence: true, uniqueness: true
+  validates :user_name,    presence: true, length: { maximum:  50 },  uniqueness: true
   validates :profile_text,                 length: { maximum: 500 }
   validates :website_url,                  length: { maximum: 500 }
-         
+  
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
