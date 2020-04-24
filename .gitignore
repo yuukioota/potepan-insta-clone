@@ -33,3 +33,10 @@
 .env
 
 public/uploads/
+
+/app/assets/images/
+
+/db/fixtures/
+
+*.coffee
+
