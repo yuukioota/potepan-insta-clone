@@ -16,7 +16,7 @@
     # profile_photo: open("#{Rails.root}/db/fixtures/img#{rand(1..5)}.jpg"),
     password: "#{n + 1}" * 6,
     password_confirmation: "#{n + 1}" * 6,
-    confirmed_at: Time.zone.now
+    # confirmed_at: Time.zone.now
   )
 end
 
